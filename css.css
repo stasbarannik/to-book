@@ -1,0 +1,65 @@
+.calendar__wrapper {
+    display: block;
+    position: relative;
+}
+.calendar__month-name {
+    text-align: center;
+}
+#calendar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+}
+#calendar > div {
+    font-size: 5vw;
+    padding: .5em;
+    background: gold;
+    text-align: center;
+}
+.calendar__day {
+    display: block;
+}
+.calendar__places {
+    display: block;
+    font-size: 12px;
+}
+.calendar__reserve {
+    cursor: pointer;
+}
+.calendar__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+.calendar__arrow-left {
+    left: 5px;
+}
+.calendar__arrow-right {
+    right: 5px;
+}
+.calendar__form {
+    display: none;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+.calendar__form.show {
+    display: block !important;
+}
+.reserve__buttons-wrapper {
+    text-align: center;
+}
+.btn-group span {
+    padding: 10px;
+}
+.reverse__time-list {
+    flex-direction: column;
+}
+.reserve__list-item {
+    cursor: pointer;
+}
+.reserve__list-item.busy {
+    color: grey;
+}

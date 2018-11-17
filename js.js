@@ -86,13 +86,19 @@ jQuery(document).ready(function ($) {
         //Create days
         let day=1;
         while (daysCount >= day) {
-            out+='<div class="cell"><span class="calendar__day">' + day + '</span><span class="calendar__places">';
 
             firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), day, 23, 59, 59);
+
+            out+='<div class="cell';
+            if( firstDay > new Date() ) {
+                out+=' active" data-toggle="modal" data-target="#reserveModal';
+            }
+            out+='"><span class="calendar__day">' + day + '</span><span class="calendar__places">';
+
             if( firstDay < new Date() ) {
                 out+='- мест';
             } else {
-                out+='<a class="calendar__reserve"  data-toggle="modal" data-target="#reserveModal">мест: ' + response[ (day-1) ] + '</a>';
+                out+='<a class="calendar__reserve">мест: ' + response[ (day-1) ] + '</a>';
             }
             out+='</span></div>';
 
@@ -106,6 +112,11 @@ jQuery(document).ready(function ($) {
 
     function showReserveModal(day) {
 
+        //Reset form
+        $('#reserve-button').css('display', 'block');
+        $('.reserve__message').html('');
+
+        //Make request to server
         reserveDate = day.getTime()/1000;;
         let requestData = reserveDate;
        //TODO send request here with requestData. Now hardcode response
@@ -180,9 +191,9 @@ jQuery(document).ready(function ($) {
     });
 
     // Click to reserve
-    $(document).on('click', '.calendar__reserve', function (e) {
+    $(document).on('click', '.cell', function (e) {
         e.preventDefault();
-        let day = new Date(globalCurrentDate.getFullYear(), globalCurrentDate.getMonth(), $(this).parents('.cell').find('.calendar__day').text());
+        let day = new Date(globalCurrentDate.getFullYear(), globalCurrentDate.getMonth(), $(this).find('.calendar__day').text(), 12, 0, 0, 0);
 
         showReserveModal(day);
     });

@@ -23,7 +23,7 @@
     display: block;
     font-size: 12px;
 }
-.calendar__reserve {
+.calendar__wrapper .cell.active {
     cursor: pointer;
 }
 .calendar__arrow {
